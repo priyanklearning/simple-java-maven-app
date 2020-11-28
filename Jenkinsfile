@@ -1,9 +1,15 @@
 pipeline {
-  agent any
+  agent {
+    docker {
+      image 'node:6-alpine'
+      args 'p 3000:3000'
+    }
+
+  }
   stages {
-    stage('prepare') {
+    stage('Build') {
       steps {
-        sh 'echo \'Hello World! Jenkins Blue Ocean\''
+        sh 'npm install'
       }
     }
 
